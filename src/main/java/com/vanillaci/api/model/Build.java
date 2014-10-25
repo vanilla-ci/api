@@ -10,6 +10,7 @@ import java.util.*;
  */
 @Entity
 public class Build extends BaseEntity {
+	@JsonIgnore
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "jobId", nullable = false)
 	private Job job;

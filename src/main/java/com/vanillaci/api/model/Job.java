@@ -14,7 +14,7 @@ public class Job extends BaseEntity {
 	@OneToMany(mappedBy = "job", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<BuildStep> steps = new ArrayList<>();
 
-	@OneToMany(mappedBy = "jobPost", cascade = CascadeType.PERSIST, orphanRemoval = true)
+	@OneToMany(mappedBy = "job", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<PostBuildStep> postSteps = new ArrayList<>();
 
 	public String getName() {

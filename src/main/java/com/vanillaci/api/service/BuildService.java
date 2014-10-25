@@ -1,6 +1,7 @@
 package com.vanillaci.api.service;
 
 import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.type.*;
 import com.fasterxml.jackson.databind.*;
 import com.vanillaci.api.*;
 import com.vanillaci.api.model.*;
@@ -57,7 +58,7 @@ public class BuildService {
 		}
 	}
 
-	private List<Map<String, Object>> convertSteps(List<AbstractBuildStep> steps) {
+	private List<Map<String, Object>> convertSteps(List<? extends AbstractBuildStep> steps) {
 		List<Map<String, Object>> result = new ArrayList<>();
 		for (AbstractBuildStep step : steps) {
 			Map<String, Object> stepMap = convertStep(step);
@@ -72,6 +73,12 @@ public class BuildService {
 		result.put("name", step.getName());
 		result.put("parameters", step.getParameters());
 
+		return result;
+	}
+
+	public Map<String, Object> convertBuildToMap(Build build) {
+		Map<String, Object> result = objectMapper.convertValue(build, new TypeReference<Map<String, Object>>() {});
+		result.put("jobId", build.getJob().getId());
 		return result;
 	}
 }

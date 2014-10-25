@@ -6,5 +6,4 @@ import javax.persistence.*;
  * @author Joel Johnson
  */
 @Entity
-public class PostBuildStep extends AbstractBuildStep {
-}
+public class PostBuildStep extends AbstractBuildStep {}
