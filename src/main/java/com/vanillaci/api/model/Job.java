@@ -11,11 +11,11 @@ public class Job extends BaseEntity {
 	@Column
 	private String name;
 
-	@OneToMany(mappedBy = "job", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "job", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<BuildStep> steps = new ArrayList<>();
 
-	@OneToMany(mappedBy = "job", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<BuildStep> postSteps = new ArrayList<>();
+	@OneToMany(mappedBy = "jobPost", cascade = CascadeType.PERSIST, orphanRemoval = true)
+	private List<PostBuildStep> postSteps = new ArrayList<>();
 
 	public String getName() {
 		return name;
@@ -33,11 +33,11 @@ public class Job extends BaseEntity {
 		this.steps = buildSteps;
 	}
 
-	public List<BuildStep> getPostSteps() {
+	public List<PostBuildStep> getPostSteps() {
 		return postSteps;
 	}
 
-	public void setPostSteps(List<BuildStep> postBuildSteps) {
+	public void setPostSteps(List<PostBuildStep> postBuildSteps) {
 		this.postSteps = postBuildSteps;
 	}
 }
